@@ -67,3 +67,6 @@ int main(void){
     printf("%c", result[output_index++]);
   return 0;
 }
+
+// TODO:
+// probably there is memory leak, find the SIGABT cause

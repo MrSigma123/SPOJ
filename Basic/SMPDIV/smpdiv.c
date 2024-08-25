@@ -25,6 +25,7 @@ Output:
 5 10 15 20 25 30
 */
 #include <stdio.h>
+#include <stdlib.h>
 int main(void)
 {
   int r = 100000;    // range
@@ -32,16 +33,35 @@ int main(void)
   int t;             // test cases
   int a = 2;         // tested value started from 2
   int i;
+  int j = 0;
   scanf("%d", &t);
+  int * input_array = (int*)malloc(t * sizeof(int) * 3);
   for (i = 0; i < t; i++)
   {
-    scanf("%d", &n); // limit
-  
-    while(a < r)
-    {
-      if (a % x == 0 && a % y != 0)
-        printf("%d", a++);
-    }
+    scanf("%d %d %d", &n, &x, &y); 
+    input_array[j] = n;
+    j++;
+    input_array[j] = x;
+    j++;
+    input_array[j] = y;
+    j++;
   }
+  j = 0; // reset the jterator
+  // results
+  for (i = 0; i < t; i++)
+  {
+    while (a < input_array[j])
+    {
+      if (a % input_array[j+1] == 0 && a % input_array[j+2] != 0)
+      {
+        printf("%d ", a);
+      }
+      a++;
+    }
+    j = j + 3;
+    a = 2;
+    printf("\n");
+  }
+  free(input_array);
   return 0;
 }

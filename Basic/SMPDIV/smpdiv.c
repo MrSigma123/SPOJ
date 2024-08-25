@@ -24,4 +24,24 @@ Output:
 2 6
 5 10 15 20 25 30
 */
-
+#include <stdio.h>
+int main(void)
+{
+  int r = 100000;    // range
+  int n, x, y;       // limt, divisor, not divisor
+  int t;             // test cases
+  int a = 2;         // tested value started from 2
+  int i;
+  scanf("%d", &t);
+  for (i = 0; i < t; i++)
+  {
+    scanf("%d", &n); // limit
+  
+    while(a < r)
+    {
+      if (a % x == 0 && a % y != 0)
+        printf("%d", a++);
+    }
+  }
+  return 0;
+}

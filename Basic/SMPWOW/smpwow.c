@@ -23,12 +23,15 @@ Output:
 Wooooooow
 */
 #include <stdio.h>
-int main(void){
+int main(void)
+{
   int cases;
   scanf("%d", &cases);
   printf("W");
-  if (cases > 0 && cases < 50){
-    while(cases > 0){
+  if (cases > 0 && cases < 50)
+  {
+    while(cases > 0)
+    {
     printf("o");
     cases--;
     }

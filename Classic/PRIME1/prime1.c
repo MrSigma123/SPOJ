@@ -38,7 +38,8 @@ int main (void)
   int test_cases;
   int i = 0;
   int j = 0;
-  int test_value, divider, checked_value, value_divider_flag, lower_value, higher_value, limit;
+  int test_value, divider, checked_value, value_divider_flag;
+  int lower_value, higher_value, limit;
   scanf("%d", &test_cases);
   // I can put all the max and min values into one one-dimensional array
   // (length 2*(max_value + min_value))
@@ -69,7 +70,8 @@ int main (void)
         }
         divider++;
       }
-      if (divider > sqrt(checked_value) && checked_value != 1) // it means the divider reached the prime value
+      if (divider > sqrt(checked_value) && checked_value != 1) 
+        // it means the divider reached the prime value
         printf("%d\n", checked_value);
       checked_value++;
       divider = 2;

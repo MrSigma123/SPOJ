@@ -14,11 +14,14 @@ Output:
 5
 */
 #include <stdio.h>
-int main(void){
+int main(void)
+{
   int value1, value2;
   scanf("%d", &value1);
   scanf("%d", &value2);
   if (value1 <= 200 && value2 <= 200)
+  {
     printf("\n%d", value1 + value2);
+  }
   return 0;
 }

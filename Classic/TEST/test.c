@@ -22,7 +22,8 @@ Output:
 88
 Information
 
-In case of any problems with your code, you can take a look in the forum, you'll find the answer, only for this problem, in various languages.
+In case of any problems with your code, you can take a look in the forum,
+you'll find the answer, only for this problem, in various languages.
 */
 #include <stdio.h>
 int main(void)

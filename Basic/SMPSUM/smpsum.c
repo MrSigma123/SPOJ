@@ -27,4 +27,17 @@ Input:
 Output:
 61
 */
-
+#include <stdio.h>
+int main(void)
+{
+  int a, b; // for storing the lower and upper range limits
+  int sum = 0;
+  scanf("%d %d", &a, &b);
+  while (a <= b)
+  {
+    sum += a*a;
+    a++;
+  }
+  printf("%d", sum);
+  return 0;
+}

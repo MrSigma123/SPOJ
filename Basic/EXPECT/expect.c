@@ -57,9 +57,11 @@ int main(){
 
 */
 #include <stdio.h>
-int main(void){
+int main(void)
+{
   int input;
-  while(1){
+  while(1)
+  {
     scanf("%d", &input);
     printf("%d\n", input);
     fflush(stdout);

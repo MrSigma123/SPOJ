@@ -33,40 +33,26 @@ ntc
 */
 #include <stdio.h>
 #include <stdlib.h>
-#define SIZE 101
-int main(void){
-  int cases, i, index, strlen;
-  char string[SIZE];
-  char result[SIZE]; // for simplicity
-  int output_index = 0;
+#include <string.h>
+int main(void)
+{
+  int cases;
+  int i;
+  char character;        // for testing
+  char char_array[256];  // to store up to 200 characters
+  char half_string[128]; // to store up to 100 characters
   scanf("%d", &cases);
-  if (cases < 1 || cases > 100) return 0;
-  for (i = 0; i < cases; i++){
-    index = 0;
-    strlen = 0;
-    scanf("%s", string);
-    //for finding the string length
-    while (string[index++] != '\0'){
-      strlen++;
+  for(i = 0; i < cases; i++)
+  {
+    scanf("%255s", char_array);
+    ...
+    character = getchar();
+    while(character != '\n')
+    {
+
     }
-    //printf("%d", strlen);
-    for (index = 0; index < strlen/2; index++){
-      if (index % 2 == 0){
-        //printf("%c", string[index]);
-        result[output_index++] = string[index];
-      }
-    }
-    //printf("\n");
-    result[output_index++] = '\n';
-    fflush(stdout);
+    printf("%s\n", char_array);
   }
-  result[output_index++] = '\0';
-  output_index = 0;
-  printf("\n");
-  while(result[output_index] != '\0')
-    printf("%c", result[output_index++]);
   return 0;
 }
 
-// TODO:
-// probably there is memory leak, find the SIGABT cause

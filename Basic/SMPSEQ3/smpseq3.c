@@ -32,3 +32,46 @@ Input:
 Output:
 0 4
 */
+#include <stdio.h>
+#include <stdlib.h>
+int main(void)
+{
+  int n, m, i, j;
+  int * array_n;
+  int * array_m;
+  scanf("%d", &n);
+  array_n = (int *)malloc(sizeof(int) * n);
+  for (i = 0; i < n; i++)
+  {
+    scanf("%d", &array_n[i]);
+  }
+  scanf("%d", &m);
+  array_m = (int *)malloc(sizeof(int) * m);
+  for (i = 0; i < m; i++)
+  {
+    scanf("%d", &array_m[i]);
+  }
+  // ckecking value by value
+  for (i = 0; i < n; i++)
+  {
+    for (j = 0; j < m; j++)
+    {
+      if (array_n[i] == array_m[j])
+      {
+        break;
+      }
+      else if (array_n[i] < array_m[j])
+      {
+        printf("%d ", array_n[i]);
+        break;
+      }
+      else if (array_n[i] > array_m[m-1] && array_m[j] == array_m[m-1])
+      {
+        printf("%d ", array_n[i]);
+      }
+    }
+  }
+  free (array_n);
+  free (array_m);
+  return 0;
+}

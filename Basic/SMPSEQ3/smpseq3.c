@@ -68,6 +68,7 @@ int main(void)
       else if (array_n[i] > array_m[m-1] && array_m[j] == array_m[m-1])
       {
         printf("%d ", array_n[i]);
+        break;
       }
     }
   }

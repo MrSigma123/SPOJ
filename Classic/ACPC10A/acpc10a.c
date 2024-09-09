@@ -46,24 +46,63 @@ AP 13
 GP 54
 */
 #include <stdio.h>
+#include <stdlib.h>
 
 int main(void)
 {
-    int i;
-    int cases;
-    int input[100][3]; // assume 100 test cases
-    int a1, a2, a3; // declaring a1, a2, a3 at the beginning
+    int i, cases = 0;
+    int a1, a2, a3;
+    int **input;  // Pointer to a dynamically allocated 2D array
+    int size = 10;  // Initial size for the number of test cases
 
-    // store the input
-    for (i = 0; i < 100; i++)
+    // Allocate memory for the input array (array of pointers)
+    input = (int **)malloc(size * sizeof(int *));
+    
+    // Check if the allocation succeeded
+    if (input == NULL)
     {
+        printf("Memory allocation failed!\n");
+        return 1;
+    }
+
+    // store the input dynamically
+    for (i = 0; ; i++)
+    {
+        // Reallocate memory if the number of test cases exceeds the initial size
+        if (i >= size)
+        {
+            size *= 2;
+            input = (int **)realloc(input, size * sizeof(int *));
+            
+            if (input == NULL)
+            {
+                printf("Memory allocation failed!\n");
+                return 1;
+            }
+        }
+
+        // Allocate memory for each test case (each row has 3 integers)
+        input[i] = (int *)malloc(3 * sizeof(int));
+
+        // Check if the allocation succeeded
+        if (input[i] == NULL)
+        {
+            printf("Memory allocation failed!\n");
+            return 1;
+        }
+
+        // Read the input
         scanf("%d %d %d", &input[i][0], &input[i][1], &input[i][2]);
+
+        // Check for the termination condition (0 0 0)
         if (input[i][0] == 0 && input[i][1] == 0 && input[i][2] == 0)
         {
+            free(input[i]); // free the memory for the last case (0 0 0)
             break; // Stop reading when you encounter "0 0 0"
         }
+
+        cases++; // count valid test cases
     }
-    cases = i;
 
     // print the results
     for (i = 0; i < cases; i++)
@@ -81,6 +120,13 @@ int main(void)
             printf("GP %d\n", a3 * (a2 / a1)); // mult div
         }
     }
+
+    // Free the allocated memory
+    for (i = 0; i < cases; i++)
+    {
+        free(input[i]); // Free each row
+    }
+    free(input); // Free the main array
 
     return 0;
 }

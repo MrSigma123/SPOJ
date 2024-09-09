@@ -45,3 +45,34 @@ Output:
 AP 13
 GP 54
 */
+#include <stdio.h>
+int main(void)
+{
+  int i;
+  int cases;
+  int input[100][3]; // assume 100 test cases
+  // store the input
+  for (i = 0; i < 100; i++)
+  {
+    scanf("%d %d %d", &input[i][0], &input[i][1], &input[i][2]);
+    if (input[i][0] == 0 && input[i][1] == 0 && input[i][2] == 0)
+    {
+      break;
+    }
+  }
+  cases = i;
+  // print the results
+  for (i = 0; i < cases; i++)
+  {
+    if (input[i][1] - input[i][0] == input[i][2] - input[i][1])
+    {
+      printf("AP %d\n", input[i][2] + input[i][2] - input[i][1]); // add diff
+    }
+    else if (input[i][2] / input[i][1] == input[i][1] / input[i][0]
+            && input[i][2] % input[i][1] == 0 && input[i][1] % input[i][0] == 0)
+    {
+      printf("GP %d\n", input[i][2] * (input[i][2] / input[i][1])); // mult div
+    }
+  }
+  return 0;
+}

@@ -46,33 +46,42 @@ AP 13
 GP 54
 */
 #include <stdio.h>
+
 int main(void)
 {
-  int i;
-  int cases;
-  int input[100][3]; // assume 100 test cases
-  // store the input
-  for (i = 0; i < 100; i++)
-  {
-    scanf("%d %d %d", &input[i][0], &input[i][1], &input[i][2]);
-    if (input[i][0] == 0 && input[i][1] == 0 && input[i][2] == 0)
+    int i;
+    int cases;
+    int input[100][3]; // assume 100 test cases
+    int a1, a2, a3; // declaring a1, a2, a3 at the beginning
+
+    // store the input
+    for (i = 0; i < 100; i++)
     {
-      break;
+        scanf("%d %d %d", &input[i][0], &input[i][1], &input[i][2]);
+        if (input[i][0] == 0 && input[i][1] == 0 && input[i][2] == 0)
+        {
+            break; // Stop reading when you encounter "0 0 0"
+        }
     }
-  }
-  cases = i;
-  // print the results
-  for (i = 0; i < cases; i++)
-  {
-    if (input[i][1] - input[i][0] == input[i][2] - input[i][1])
+    cases = i;
+
+    // print the results
+    for (i = 0; i < cases; i++)
     {
-      printf("AP %d\n", input[i][2] + input[i][2] - input[i][1]); // add diff
+        a1 = input[i][0];
+        a2 = input[i][1];
+        a3 = input[i][2];
+
+        if (a2 - a1 == a3 - a2)
+        {
+            printf("AP %d\n", a3 + (a2 - a1)); // add diff
+        }
+        else if (a2 / a1 == a3 / a2 && a2 % a1 == 0 && a3 % a2 == 0)
+        {
+            printf("GP %d\n", a3 * (a2 / a1)); // mult div
+        }
     }
-    else if (input[i][2] / input[i][1] == input[i][1] / input[i][0]
-            && input[i][2] % input[i][1] == 0 && input[i][1] % input[i][0] == 0)
-    {
-      printf("GP %d\n", input[i][2] * (input[i][2] / input[i][1])); // mult div
-    }
-  }
-  return 0;
+
+    return 0;
 }
+

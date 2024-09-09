@@ -32,27 +32,41 @@ i
 ntc
 */
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 int main(void)
 {
-  int cases;
-  int i;
-  char character;        // for testing
-  char char_array[256];  // to store up to 200 characters
-  char half_string[128]; // to store up to 100 characters
-  scanf("%d", &cases);
-  for(i = 0; i < cases; i++)
+  int t; // for storing test cases
+  int i, j, str_length;
+  char ch;
+  scanf("%d ", &t);
+  char string_array[100][200]; // for storing up to 100 strings of 200 ch. len
+  char result_array[100][100]; // two times shorter string length
+  for (i = 0; i < t; i++)      // test cases maneuvering
   {
-    scanf("%255s", char_array);
-    ...
-    character = getchar();
-    while(character != '\n')
+    for (j = 0; ; j++)         // initializing the main string
     {
-
+      ch = getchar();
+      if (ch == '\n')
+      {
+        string_array[i][j] = '\0'; // indicate the end of the string
+        break;
+      }
+      string_array[i][j] = ch;
     }
-    printf("%s\n", char_array);
+    str_length = j;
+    for (j = 0; j < ((str_length / 2) + 1) / 2; j++) // initializing the results
+    {
+      result_array[i][j] = string_array[i][j*2];
+    }
+    result_array[i][j] = '\0';
+  }
+  printf("\n"); // separate the input from the output
+  for (i = 0; i < t; i++)
+  {
+    for (j = 0; result_array[i][j] != '\0'; j++)
+    {
+      printf("%c", result_array[i][j]);
+    }
+    printf("\n");
   }
   return 0;
 }
-

@@ -61,7 +61,7 @@ int main(void)
   int test_cases;
   int ** pattern_sizes_arr;
   int size = 10; // initial size for the number of cases
-  int i, j, k, l;
+  int i, j, k, l, m;
   scanf("%d", &test_cases);
 
   // allocate memory for the inpiut array (array of pointers)
@@ -107,7 +107,78 @@ int main(void)
   // print the results
   for (i = 0; i < test_cases; i++)
   {
-
+    for (j = 0; j < pattern_sizes_arr[i][0]; j++)
+    {
+      for (k = 0; k < pattern_sizes_arr[i][1]; k++)
+      {
+        if (j == 0 && k == 0) // only for printing the first line of asterisks
+        {
+          for (l = 0; l < pattern_sizes_arr[i][3] + 2; l++)
+          {
+            printf("*");
+          }
+        }
+        else if (j == 0 && k != 0)
+        {
+          for (l = 0; l < pattern_sizes_arr[i][3] + 1; l++)
+          {
+            printf("*");
+          }
+        }
+      }
+      if (j == 0)
+      {
+        printf("\n");
+      }
+      // printing the inner parts (rectangles) of the patterns
+      for (l = 0; l < pattern_sizes_arr[i][2]; l++)
+      {
+        for (k = 0; k < pattern_sizes_arr[i][1]; k++)
+        {
+          if (k == 0)
+          {
+            printf("*");
+            for (m = 0; m < pattern_sizes_arr[i][3]; m++)
+            {
+              printf(".");
+            }
+            printf("*");
+          }
+          else
+          {
+            for (m = 0; m < pattern_sizes_arr[i][3]; m++)
+            {
+              printf(".");
+            }
+            printf("*");
+          }
+        }
+        printf("\n");
+      }
+      // printing the closing line of the patterns (rectangles)
+      for (k = 0; k < pattern_sizes_arr[i][1]; k++)
+      {
+        if (k == 0)
+        {
+          for (l = 0; l < pattern_sizes_arr[i][3] + 2; l++)
+          {
+            printf("*");
+          }
+        }
+        else
+        {
+          for (l = 0; l < pattern_sizes_arr[i][3] + 1; l++)
+          {
+            printf("*");
+          }
+        }
+      }
+      printf("\n");
+    }
+    if (i < test_cases - 1)
+    {
+      printf("\n");
+    }
   }
   
   // free the allocated memory

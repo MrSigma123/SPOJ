@@ -150,12 +150,7 @@ int main(void)
             {
               if ((j + k) % 2 == 0) // for backslash inner pattern
               {
-                if (pattern_sizes_arr[i][2] == 1)
-                {
-                  printf("\\");
-                  break;
-                }
-                else if (m == l)
+                if (m == l)
                 {
                   printf("\\");
                 }
@@ -166,12 +161,7 @@ int main(void)
               }
               else // for standard slash inner pattern
               {
-                if (pattern_sizes_arr[i][2] == 1)
-                {
-                  printf("/");
-                  break;
-                }
-                else if (m != l)
+                if (m == pattern_sizes_arr[i][2] - 1 - l)
                 {
                   printf("/");
                 }
@@ -189,11 +179,6 @@ int main(void)
             {
               if ((j + k) % 2 == 0) // for backslash inner pattern
               {
-                if (pattern_sizes_arr[i][2] == 1)
-                {
-                  printf("\\");
-                  break;
-                }
                 if (m == l)
                 {
                   printf("\\");
@@ -205,12 +190,7 @@ int main(void)
               }
               else // for standard slash inner pattern
               {
-                if (pattern_sizes_arr[i][2] == 1)
-                {
-                  printf("/");
-                  break;
-                }
-                if (m != l)
+                if (m == pattern_sizes_arr[i][2] - 1 - l)
                 {
                   printf("/");
                 }

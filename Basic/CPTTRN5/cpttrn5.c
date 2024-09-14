@@ -110,7 +110,150 @@ int main(void)
   // print the results
   for (i = 0; i < test_cases; i++)
   {
-
+    for (j = 0; j < pattern_sizes_arr[i][0]; j++)
+    {
+      for (k = 0; k < pattern_sizes_arr[i][1]; k++)
+      {
+        // print the first line of asterisks
+        if (j == 0 && k == 0)
+        {
+          for (l = 0; 
+            l < pattern_sizes_arr[i][2] + 2;
+            l++)
+          {
+            printf("*");
+          }
+        }
+        else if (j == 0 && k != 0)
+        {
+          for (l = 0;
+            l < pattern_sizes_arr[i][2] + 1;
+            l++)
+          {
+            printf("*");
+          }
+        }
+      }
+      if (j == 0)
+      {
+        printf("\n");
+      }
+      // printing the inner part of the patters
+      for (l = 0; l < pattern_sizes_arr[i][2]; l++)
+      {
+        for (k = 0; k < pattern_sizes_arr[i][1]; k++)
+        {
+          if (k == 0)
+          {
+            printf("*");
+            for (m = 0; m < pattern_sizes_arr[i][2]; m++)
+            {
+              if ((j + k) % 2 == 0) // for backslash inner pattern
+              {
+                if (pattern_sizes_arr[i][2] == 1)
+                {
+                  printf("\\");
+                  break;
+                }
+                else if (m == l)
+                {
+                  printf("\\");
+                }
+                else
+                {
+                  printf(".");
+                }
+              }
+              else // for standard slash inner pattern
+              {
+                if (pattern_sizes_arr[i][2] == 1)
+                {
+                  printf("/");
+                  break;
+                }
+                else if (m != l)
+                {
+                  printf("/");
+                }
+                else
+                {
+                  printf(".");
+                }
+              }
+            }
+            printf("*");
+          }
+          else // k != 0
+          {
+            for (m = 0; m < pattern_sizes_arr[i][2]; m++)
+            {
+              if ((j + k) % 2 == 0) // for backslash inner pattern
+              {
+                if (pattern_sizes_arr[i][2] == 1)
+                {
+                  printf("\\");
+                  break;
+                }
+                if (m == l)
+                {
+                  printf("\\");
+                }
+                else
+                {
+                  printf(".");
+                }
+              }
+              else // for standard slash inner pattern
+              {
+                if (pattern_sizes_arr[i][2] == 1)
+                {
+                  printf("/");
+                  break;
+                }
+                if (m != l)
+                {
+                  printf("/");
+                }
+                else
+                {
+                  printf(".");
+                }
+              }
+            }
+            printf("*");
+          }
+        }
+        printf("\n");
+      }
+      // printing the closing line of the patters
+      for (k = 0; k < pattern_sizes_arr[i][1]; k++)
+      {
+        // print the first line of asterisks
+        if (k == 0)
+        {
+          for (l = 0; 
+            l < pattern_sizes_arr[i][2] + 2;
+            l++)
+          {
+            printf("*");
+          }
+        }
+        else // k != 0
+        {
+          for (l = 0;
+            l < pattern_sizes_arr[i][2] + 1;
+            l++)
+          {
+            printf("*");
+          }
+        }
+      }
+      printf("\n");
+    }
+    if (i < test_cases - 1)
+    {
+      printf("\n");
+    }
   }
   
   // free the allocated memory

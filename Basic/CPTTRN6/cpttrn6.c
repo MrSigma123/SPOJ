@@ -63,3 +63,68 @@ Output:
 ..|..|..|..|..|..
 
 */
+#include <stdio.h>
+#include <stdlib.h>
+int main(void)
+{
+  int test_cases;
+  int ** pattern_sizes_arr;
+  int size = 10; // initial size for the number of cases
+  int i, j, k, l;
+  scanf("%d", &test_cases);
+
+  // allocate memory for the inpiut array (array of pointers)
+  pattern_sizes_arr = (int **)malloc(size * sizeof(int *));
+
+  // check if the allocation succeeded
+  if (pattern_sizes_arr == NULL)
+  {
+    printf("Memory allocation failed!\n");
+    return 1;
+  }
+
+  // store the input dynamically
+  for (i = 0; i < test_cases; i++)
+  {
+    // reallocate memory if the number of test cases exceeds the initial size
+    if (i >= size)
+    {
+      size *= 2;
+      pattern_sizes_arr = (int **)realloc(pattern_sizes_arr, size * sizeof(int *));
+    }
+
+    if (pattern_sizes_arr == NULL)
+    {
+      printf("Memory allocation failed!\n");
+      return 1;
+    }
+
+    // allocate the memory for each test case (each row has four integers)
+    pattern_sizes_arr[i] = (int *)malloc(4 * sizeof(int));
+
+    // check if the allocation succeed
+    if (pattern_sizes_arr == NULL)
+    {
+      printf("Memory allocation failed!\n");
+      return 1;
+    }
+
+    // read the input
+    scanf("%d %d %d %d", &pattern_sizes_arr[i][0], &pattern_sizes_arr[i][1],
+          &pattern_sizes_arr[i][2], &pattern_sizes_arr[i][3]);
+  }
+  // print the results
+  for (i = 0; i < test_cases; i++)
+  {
+
+  }
+
+  // free the allocated memory
+  for (i = 0; i < test_cases; i++)
+  {
+    free(pattern_sizes_arr[i]); // free each row
+  }
+  free(pattern_sizes_arr); // free the main array
+
+  return 0;
+}

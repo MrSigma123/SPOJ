@@ -147,23 +147,29 @@ int main(void)
         printf("-");
       }
       printf("\n");
-      for (k = 0; k < pattern_sizes_arr[i][2]; k++) // multiply subline row before separator
+      if (j == pattern_sizes_arr[i][0] - 1) // printing the closing row of dots and pipes w.o. separator
       {
-        for (m = 0; m < pattern_sizes_arr[i][1]; m++) // pairs of dots and pipes in line
+        for (k = 0; k < pattern_sizes_arr[i][2]; k++) // multiply subline row
         {
-          for (l = 0; l < pattern_sizes_arr[i][3]; l++)
+          for (m = 0; m < pattern_sizes_arr[i][1]; m++) // pairs of dots and pipes in line
+          {
+            for (l = 0; l < pattern_sizes_arr[i][3]; l++)
+            {
+              printf(".");
+            }
+            printf("|");
+          }
+          for (l = 0; l < pattern_sizes_arr[i][3]; l++) // closing dots
           {
             printf(".");
           }
-          printf("|");
+          printf("\n");
         }
-        for (l = 0; l < pattern_sizes_arr[i][3]; l++) // closing dots
-        {
-          printf(".");
-        }
-        printf("\n");
       }
-
+    }
+    if (i < test_cases - 1)
+    {
+      printf("\n");
     }
   }
 

@@ -70,7 +70,7 @@ int main(void)
   int test_cases;
   int ** pattern_sizes_arr;
   int size = 10; // initial size for the number of cases
-  int i, j, k, l;
+  int i, j, k, l, m;
   scanf("%d", &test_cases);
 
   // allocate memory for the inpiut array (array of pointers)
@@ -114,9 +114,57 @@ int main(void)
           &pattern_sizes_arr[i][2], &pattern_sizes_arr[i][3]);
   }
   // print the results
-  for (i = 0; i < test_cases; i++)
+  for (i = 0; i < test_cases; i++) // for test cases
   {
+    for (j = 0; j < pattern_sizes_arr[i][0]; j++) // for rows
+    {
+      for (k = 0; k < pattern_sizes_arr[i][2]; k++) // multiply subline row before separator
+      {
+        for (m = 0; m < pattern_sizes_arr[i][1]; m++) // pairs of dots and pipes in line
+        {
+          for (l = 0; l < pattern_sizes_arr[i][3]; l++)
+          {
+            printf(".");
+          }
+          printf("|");
+        }
+        for (l = 0; l < pattern_sizes_arr[i][3]; l++) // closing dots
+        {
+          printf(".");
+        }
+        printf("\n");
+      }
+      for (m = 0; m < pattern_sizes_arr[i][1]; m++) // pairs of minuses and pluses
+      {
+        for (l = 0; l < pattern_sizes_arr[i][3]; l++)
+        {
+          printf("-");
+        }
+        printf("+");
+      }
+      for (l = 0; l < pattern_sizes_arr[i][3]; l++) // closing dots
+      {
+        printf("-");
+      }
+      printf("\n");
+      for (k = 0; k < pattern_sizes_arr[i][2]; k++) // multiply subline row before separator
+      {
+        for (m = 0; m < pattern_sizes_arr[i][1]; m++) // pairs of dots and pipes in line
+        {
+          for (l = 0; l < pattern_sizes_arr[i][3]; l++)
+          {
+            printf(".");
+          }
+          printf("|");
+        }
+        for (l = 0; l < pattern_sizes_arr[i][3]; l++) // closing dots
+        {
+          printf(".");
+        }
+        printf("\n");
+      }
 
+    }
   }
 
   // free the allocated memory

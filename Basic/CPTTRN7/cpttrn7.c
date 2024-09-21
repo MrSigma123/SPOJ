@@ -60,7 +60,7 @@ int main(void)
   int test_cases;
   int **pattern_sizes_arr;
   int size = 10; // initial size for the number of cases
-  int i, j, k, l;
+  int i, j, k, l, m, n;
   scanf("%d", &test_cases);
 
   // allocate memory for the inpiut array (array of pointers)
@@ -103,9 +103,91 @@ int main(void)
   }
 
   // print the results
-  for (i = 0; i < test_cases; i++)
+  for (i = 0; i < test_cases; i++) // for each case
   {
+    for (j = 0; j < pattern_sizes_arr[i][0]; j++) // for each row
+    {
+      for (k = 0; k < pattern_sizes_arr[i][1]; k++) // for each column
+      {
+        for (n = 0; n < pattern_sizes_arr[i][2]; n++) // for repeating U part of pattern line
+        {
+          for (l = 0; l < pattern_sizes_arr[i][2]; l++) // for diagonal UL part of pattern
+          {
+            for (m = 0; m < pattern_sizes_arr[i][2] / 2; m++)
+            {
+              if (l + m + n == pattern_sizes_arr[i][2] - 1) 
+              {
+                printf("/");
+              }
+              else
+              {
+                printf(".");
+              }
+            }
+          }
+          for (l = 0; l < pattern_sizes_arr[i][2]; l++) // for diagonal UR part of pattern
+          {
+            for (m = 0; m < pattern_sizes_arr[i][2] / 2; m++)
+            {
+              if (l - n == m)
+              {
+                printf("\\");
+              }
+              else
+              {
+                printf(".");
+              }
+            }
+          }
+          printf("\n");
+        }
 
+      }
+
+      for (k = 0; k < pattern_sizes_arr[i][1]; k++)
+      {
+        for (n = 0; n < pattern_sizes_arr[i][2]; n++) // for repeating D part of pattern line
+        {
+          for (l = 0; l < pattern_sizes_arr[i][2]; l++) // for diagonal DL part of pattern
+          {
+            for (m = 0; m < pattern_sizes_arr[i][2] / 2; m++)
+            {
+              if (l - n == m)
+              {
+                printf("\\");
+              }
+              else
+              {
+                printf(".");
+              }
+            }
+          }
+          for (l = 0; l < pattern_sizes_arr[i][2]; l++) // for diagonal DR part of pattern
+          {
+            for (m = 0; m < pattern_sizes_arr[i][2] / 2; m++)
+            {
+              if (l + m + n == pattern_sizes_arr[i][2] - 1) 
+              {
+                printf("/");
+              }
+              else
+              {
+                printf(".");
+              }
+            }
+          }
+          printf("\n");
+        }
+
+      }
+
+    }
+
+    if (i < test_cases - 1)
+    {
+      
+      printf("\n");
+    }
   }
 
   // free the allocated memory

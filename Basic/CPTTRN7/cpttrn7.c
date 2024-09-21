@@ -117,7 +117,11 @@ int main(void)
         {
           for (m = 0; m < pattern_sizes_arr[i][2]; m++)
           {
-            if (l + m == pattern_sizes_arr[i][2] - 1)
+            if (pattern_sizes_arr[i][2] == 1)
+            {
+              printf("/");
+            }
+            else if (l + m == pattern_sizes_arr[i][2] - 1)
             {
               printf("/");
             }
@@ -128,7 +132,11 @@ int main(void)
           }
           for (m = 0; m < pattern_sizes_arr[i][2]; m++)
           {
-            if (l == m)
+            if (pattern_sizes_arr[i][2] == 1)
+            {
+              printf("\\");
+            }
+            else if (l == m)
             {
               printf("\\");
             }
@@ -147,7 +155,11 @@ int main(void)
         {
           for (m = 0; m < pattern_sizes_arr[i][2]; m++)
           {
-            if (l == m)
+            if (pattern_sizes_arr[i][2] == 1)
+            {
+              printf("\\");
+            }
+            else if (l == m)
             {
               printf("\\");
             }
@@ -158,7 +170,11 @@ int main(void)
           }
           for (m = 0; m < pattern_sizes_arr[i][2]; m++)
           {
-            if (l + m == pattern_sizes_arr[i][2] - 1)
+            if (pattern_sizes_arr[i][2] == 1)
+            {
+              printf("/");
+            }
+            else if (l + m == pattern_sizes_arr[i][2] - 1)
             {
               printf("/");
             }

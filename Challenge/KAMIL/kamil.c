@@ -49,15 +49,4 @@ Output:
 [and 9 test cases more]
 */
 #include <stdio.h>
-int main(){
-  int r[10],i,j;
-  char s[21];
-  for(i=0;i<10;i++){
-    fgets(s,21,stdin);
-    r[i] = 1;
-    for(j=0;s[j]!= '\n'&&s[j]!='\0';j++)
-      if(s[j]=='T'||s[j]=='D'||s[j]=='L'||s[j]=='F')r[i]*=2;
-  }
-  for(i=0;i<10;i++)printf("%d\n", r[i]);
-  return 0;
-}
+int r,i,j;char s[21];int main(){for(i=0;i<10;i++){fgets(s,21,stdin);r=1;for(j=0;s[j]>32;j++)if(s[j]=='T'||s[j]=='D'||s[j]=='L'||s[j]=='F')r*=2;printf("%d\n",r);}return 0;}

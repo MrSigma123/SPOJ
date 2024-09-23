@@ -48,4 +48,28 @@ Output:
 4
 [and 9 test cases more]
 */
-
+#include <stdio.h>
+#include <string.h>
+int main()
+{
+  int r[10];
+  char s[21];
+  int i, j;
+  for (i = 0; i < 10; i++)
+  {
+    fgets(s, 21, stdin);
+    r[i] = 1;
+    for (j = 0; j < strlen(s); j++)
+    {
+      if (*(s + j) == 'T') r[i] *= 2;
+      if (*(s + j) == 'D') r[i] *= 2;
+      if (*(s + j) == 'L') r[i] *= 2;
+      if (*(s + j) == 'F') r[i] *= 2; 
+    }
+  }
+  for (i = 0; i < 10; i++)
+  {
+    printf("%d\n", r[i]);
+  }
+  return 0;
+}

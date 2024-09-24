@@ -31,3 +31,16 @@ Input:
 Output:
 11
 */
+#include <stdio.h>
+int main()
+{
+  int i, t, x, s = 0;
+  scanf("%d", &t);
+  for (i = 0; i < t; i++)
+  {
+    scanf("%d", &x);
+    if (x > 0) s += x;
+  }
+  printf("%d", s);
+  return 0;
+}

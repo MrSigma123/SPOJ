@@ -68,6 +68,7 @@ int main(void)
   int **pattern_sizes_arr;
   int size = 10; // initial size for the number of cases
   int i, j, k, l, m, o;
+  int star_flag = 0;
   scanf("%d", &test_cases);
   
   // allocate memory for the inpiut array (array of pointers)
@@ -128,6 +129,11 @@ int main(void)
             else if (m == o)
             {
               printf("/");
+              star_flag = 1;
+            }
+            else if (star_flag == 1)
+            {
+              printf("*");
             }
             else 
             {
@@ -144,6 +150,11 @@ int main(void)
             else if (m == pattern_sizes_arr[i][2] - 1 - o)
             {
               printf("\\");
+              star_flag = 0;
+            }
+            else if (star_flag == 1)
+            {
+              printf("*");
             }
             else
             {
@@ -170,6 +181,11 @@ int main(void)
             else if (m == pattern_sizes_arr[i][2] - 1 - o)
             {
               printf("\\");
+              star_flag = 1;
+            }
+            else if (star_flag == 1)
+            {
+              printf("*");
             }
             else
             {
@@ -186,6 +202,11 @@ int main(void)
             else if (m == o)
             {
               printf("/");
+              star_flag = 0;
+            }
+            else if (star_flag == 1)
+            {
+              printf("*");
             }
             else 
             {

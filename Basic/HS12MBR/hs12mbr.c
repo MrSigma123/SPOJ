@@ -62,3 +62,13 @@ test 3: lines only     (2 pts)
 test 4: mixed          (2 pts)
 test 5: mixed          (2 pts)
 */
+
+#include <stdio.h>
+int main(void)
+{
+  int test_cases;
+  scanf("%d", &test_cases);
+
+
+  return 0;
+}

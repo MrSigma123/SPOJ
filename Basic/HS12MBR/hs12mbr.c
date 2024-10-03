@@ -64,11 +64,43 @@ test 5: mixed          (2 pts)
 */
 
 #include <stdio.h>
+#include <stdlib.h>
 int main(void)
 {
   int test_cases;
+  int *** cases;
+  int size = 10;
+  int i;
+
   scanf("%d", &test_cases);
 
+  // allocate memory
+  cases = (int **)malloc(size * sizeof(int *));
 
+  if (cases == NULL)
+  {
+    printf("Memory allocation failed!\n");
+    return 1;
+  }
+
+  // dynamic input storage
+  for (i = 0; i < test_cases; i++)
+  {
+    // reallocate memory if necessary
+    if (i >= size)
+    {
+      size *= 2;
+      cases = (int **)realloc(cases, size * sizeof(int *));
+    }
+
+    if (cases == NULL)
+    {
+      printf("Memory allocation failed!\n");
+      return 1;
+    }
+
+    // allocate the memory for each subcase
+    
+  }
   return 0;
 }

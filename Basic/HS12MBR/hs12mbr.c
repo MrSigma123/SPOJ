@@ -69,18 +69,24 @@ int main(void)
 {
   int test_cases, subcases;
   int *** cases; // approach with jagged arrays
-  int size = 10;
   int i, j, obj_type;
 
   scanf("%d", &test_cases);
 
   // allocate memory for test cases
-  cases = (int ***)malloc(size * sizeof(int **));
+  cases = (int ***)malloc(test_cases * sizeof(int **));
 
-  // allocate the memory for specific subcases
+  if (cases == NULL) // check
+  {
+    printf("Memory allocation failed!\n");
+    return 1;
+  }
+
+  // for specific subcases
   for (i = 0; i < test_cases; i++)
   {
     scanf("%d", &subcases);
+    // allocate the memory for subcases
     cases[i] = (int **)malloc(subcases * sizeof(int *));
 
     if (cases[i] == NULL) // check
@@ -91,9 +97,10 @@ int main(void)
     
     for (j = 0; j < subcases; j++)
     {
-      scanf("%d", &obj_type);
-
-      if (obj_type == 'p') // for points
+      scanf(" %c", (char *)&obj_type); // read obj_type as a character
+      
+      // tests for different object types
+      if (obj_type == 'p') // for points, 'p' is 112
       {
         cases[i][j] = (int *)malloc(3 * sizeof(int));
 
@@ -106,7 +113,7 @@ int main(void)
         cases[i][j][0] = obj_type;
         scanf("%d%d", &cases[i][j][1], &cases[i][j][2]);
       }
-      else if (obj_type == 'c') // for circles
+      else if (obj_type == 'c') // for circles, 'c' is 99
       {
         cases[i][j] = (int *)malloc(4 * sizeof(int));
 
@@ -119,7 +126,7 @@ int main(void)
         cases[i][j][0] = obj_type;
         scanf("%d%d%d", &cases[i][j][1], &cases[i][j][2], &cases[i][j][3]);
       }
-      else if (obj_type == 'l') // for lines
+      else if (obj_type == 'l') // for lines, 'l' is 108
       {
         cases[i][j] = (int *)malloc(5 * sizeof(int));
 
@@ -133,10 +140,19 @@ int main(void)
         scanf("%d%d%d%d", &cases[i][j][1], &cases[i][j][2], &cases[i][j][3],
               &cases[i][j][4]);
       }
-
     }
-
   }
+
+  // free the memory
+  for (i = 0; i < test_cases; i++)
+  {
+    for (j = 0; j < subcases; j++)
+    {
+      free(cases[i][j]);
+    }
+    free(cases[i]);
+  }
+  free(cases);
 
   return 0;
 }

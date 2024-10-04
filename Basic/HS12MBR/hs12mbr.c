@@ -67,40 +67,76 @@ test 5: mixed          (2 pts)
 #include <stdlib.h>
 int main(void)
 {
-  int test_cases;
-  int *** cases;
+  int test_cases, subcases;
+  int *** cases; // approach with jagged arrays
   int size = 10;
-  int i;
+  int i, j, obj_type;
 
   scanf("%d", &test_cases);
 
-  // allocate memory
-  cases = (int **)malloc(size * sizeof(int *));
+  // allocate memory for test cases
+  cases = (int ***)malloc(size * sizeof(int **));
 
-  if (cases == NULL)
-  {
-    printf("Memory allocation failed!\n");
-    return 1;
-  }
-
-  // dynamic input storage
+  // allocate the memory for specific subcases
   for (i = 0; i < test_cases; i++)
   {
-    // reallocate memory if necessary
-    if (i >= size)
-    {
-      size *= 2;
-      cases = (int **)realloc(cases, size * sizeof(int *));
-    }
+    scanf("%d", &subcases);
+    cases[i] = (int **)malloc(subcases * sizeof(int *));
 
-    if (cases == NULL)
+    if (cases[i] == NULL) // check
     {
       printf("Memory allocation failed!\n");
       return 1;
     }
-
-    // allocate the memory for each subcase
     
+    for (j = 0; j < subcases; j++)
+    {
+      scanf("%d", &obj_type);
+
+      if (obj_type == 'p') // for points
+      {
+        cases[i][j] = (int *)malloc(3 * sizeof(int));
+
+        if (cases[i][j] == NULL) // check
+        {
+          printf("Memory allocation failed!\n");
+          return 1;
+        }
+
+        cases[i][j][0] = obj_type;
+        scanf("%d%d", &cases[i][j][1], &cases[i][j][2]);
+      }
+      else if (obj_type == 'c') // for circles
+      {
+        cases[i][j] = (int *)malloc(4 * sizeof(int));
+
+        if (cases[i][j] == NULL) // check
+        {
+          printf("Memory allocation failed!\n");
+          return 1;
+        }
+
+        cases[i][j][0] = obj_type;
+        scanf("%d%d%d", &cases[i][j][1], &cases[i][j][2], &cases[i][j][3]);
+      }
+      else if (obj_type == 'l') // for lines
+      {
+        cases[i][j] = (int *)malloc(5 * sizeof(int));
+
+        if (cases[i][j] == NULL) // check
+        {
+          printf("Memory allocation failed!\n");
+          return 1;
+        }
+
+        cases[i][j][0] = obj_type;
+        scanf("%d%d%d%d", &cases[i][j][1], &cases[i][j][2], &cases[i][j][3],
+              &cases[i][j][4]);
+      }
+
+    }
+
   }
+
   return 0;
 }

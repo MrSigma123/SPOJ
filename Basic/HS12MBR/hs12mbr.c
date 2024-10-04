@@ -141,7 +141,10 @@ int main(void)
               &cases[i][j][4]);
       }
     }
+    printf("\n");
   }
+
+  
 
   // free the memory
   for (i = 0; i < test_cases; i++)

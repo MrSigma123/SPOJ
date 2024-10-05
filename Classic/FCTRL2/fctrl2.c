@@ -33,7 +33,7 @@ Output:
 #include <stdlib.h>
 
 int factorial(int value);
-void print_results(int * array);
+void print_results(int * array, int size);
 
 int main(void)
 {
@@ -58,7 +58,12 @@ int main(void)
     scanf("%d", &results[i]);
     // modify the input to achieve the factorial value
     results[i] = factorial(results[i]);
-  } 
+  }
+
+  printf("\n"); // separate input from output
+  print_results(results, test_cases);
+
+  free(results);
 
   return 0;
 }
@@ -83,4 +88,13 @@ int factorial(int value)
     }
   }
   return result;
+}
+
+void print_results(int * array, int size)
+{
+  int i;
+  for (i = 0; i < size; i++)
+  {
+    printf("%d\n", array[i]);
+  }
 }

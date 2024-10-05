@@ -28,3 +28,59 @@ Output:
 120
 6
 */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int factorial(int value);
+void print_results(int * array);
+
+int main(void)
+{
+  int test_cases;
+  int * results;
+  int i;
+  scanf("%d", &test_cases);
+
+  // store the results
+  results = (int *)malloc(test_cases * sizeof(int));
+
+  // check the memory
+  if (results == NULL)
+  {
+    printf("Memory allocation failed!\n");
+    return 1;
+  }
+
+  for (i = 0; i < test_cases; i++)
+  {
+    // store each input in separate array cell
+    scanf("%d", &results[i]);
+    // modify the input to achieve the factorial value
+    results[i] = factorial(results[i]);
+  } 
+
+  return 0;
+}
+
+int factorial(int value)
+{
+  int i;
+  int result = 1;
+  if (value == 0)
+  {
+    return 1;
+  }
+  else if (value == 1)
+  {
+    return 1;
+  }
+  else
+  {
+    for (i = 1; i <= value; i++)
+    {
+      result *= i;
+    }
+  }
+  return result;
+}

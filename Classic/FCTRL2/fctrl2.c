@@ -39,25 +39,25 @@ void print_results(int * array, int size);
 int main(void)
 {
   int test_cases;
-  int * results;
+  int * values;
   scanf("%d", &test_cases);
 
   // store the results
-  results = (int *)malloc(test_cases * sizeof(int));
+  values = (int *)malloc(test_cases * sizeof(int));
 
   // check the memory
-  if (results == NULL)
+  if (values == NULL)
   {
     printf("Memory allocation failed!\n");
     return 1;
   }
 
-  input_values(results, test_cases);
+  input_values(values, test_cases);
 
   printf("\n"); // separate input from output
-  print_results(results, test_cases);
+  print_results(values, test_cases);
 
-  free(results);
+  free(values);
 
   return 0;
 }
@@ -240,7 +240,7 @@ const char * factorial(int value)
     "00000000000000" // 100!
   };
 
-  return factorial_values[value - 1];  
+  return factorial_values[value];  
 }
 
 void print_results(int * array, int size)
@@ -248,6 +248,6 @@ void print_results(int * array, int size)
   int i;
   for (i = 0; i < size; i++)
   {
-    printf("%d\n", array[i]);
+    printf("%s\n", factorial(array[i]));
   }
 }

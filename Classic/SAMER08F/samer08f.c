@@ -48,3 +48,10 @@ Output:
 1
 204
 */
+
+#include <stdio.h>
+int main(void)
+{
+  // design alg for finding the squares number
+  return 0;
+}

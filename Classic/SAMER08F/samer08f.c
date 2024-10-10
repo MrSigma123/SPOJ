@@ -54,7 +54,8 @@ Output:
 
 int allocate_memory(int ** in, int ** out, int size);
 int scan_input(int ** array, int size);
-
+void calculate_output(int * input, int * output, int size);
+void display_output(int * output, int size);
 
 int main(void)
 {
@@ -69,12 +70,15 @@ int main(void)
   }
 
   // store the input values
-  scan_input(&input, test_cases);
+  test_cases = scan_input(&input, test_cases);
 
   // calculate the output
-
+  calculate_output(input, output, test_cases);
+   
   // display the output
+  display_output(output, test_cases);
 
+  // free allocated memory
   free(input);
   free(output);
 
@@ -100,7 +104,7 @@ int scan_input(int ** array, int size)
 {
   int i = 0;
   int current_size = size;
-  int * temp;;
+  int * temp;
 
   while (1)
   {
@@ -127,3 +131,24 @@ int scan_input(int ** array, int size)
   return i; // array size
 }
 
+void calculate_output(int * input, int * output, int size)
+{
+  int i, j;
+  for (i = 0; i < size; i++)
+  {
+    output[i] = 0;
+    for (j = 1; j <= input[i]; j++)
+    {
+      output[i] += j*j;
+    }
+  }
+}
+
+void display_output(int * output, int size)
+{
+  int i;
+  for (i = 0; i < size; i++)
+  {
+    printf("%d\n", output[i]);
+  }
+}

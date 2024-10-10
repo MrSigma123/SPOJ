@@ -50,8 +50,80 @@ Output:
 */
 
 #include <stdio.h>
+#include <stdlib.h>
+
+int allocate_memory(int ** in, int ** out, int size);
+int scan_input(int ** array, int size);
+
+
 int main(void)
 {
-  // design alg for finding the squares number
+  int test_cases = 10;
+  int * input;
+  int * output;
+  
+  // allocate the memory
+  if (1 == allocate_memory(&input, &output, test_cases))
+  {
+    return 1;
+  }
+
+  // store the input values
+  scan_input(&input, test_cases);
+
+  // calculate the output
+
+  // display the output
+
+  free(input);
+  free(output);
+
   return 0;
 }
+
+int allocate_memory(int ** in, int ** out, int size)
+{
+  *in = (int *)malloc(size * sizeof(int));
+  *out = (int *)malloc(size * sizeof(int));
+  if (*in != NULL && *out != NULL)
+  {
+    return 0;
+  }
+  else
+  {
+    printf("Memory allocation failed!\n");
+    return 1;
+  }
+}
+
+int scan_input(int ** array, int size)
+{
+  int i = 0;
+  int current_size = size;
+  int * temp;;
+
+  while (1)
+  {
+    // check if the size is exceeded
+    if (i >= current_size)
+    {
+      current_size += size; // increase the size
+      temp = realloc(*array, current_size * sizeof(int));
+      if (temp == NULL)
+      {
+        printf("Memory allocation failed!\n");
+        return i; // returns number of the elements read so far
+      }
+      *array = temp; // update the array with the reallocated memory
+    }
+
+    scanf("%d", &(*array)[i]);
+    if ((*array)[i] == 0)
+    {
+      break;
+    }
+    i++; // move to the next index 
+  }
+  return i; // array size
+}
+

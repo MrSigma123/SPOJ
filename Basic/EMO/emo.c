@@ -59,3 +59,36 @@ Note: In the third line of both the input and output, there is a space before th
 
 Special Thanks to Sakibul Mowla.
 */
+#include <stdio.h>
+#define SIZE 201
+int main(void)
+{
+  char line[SIZE]; // store the line to process it and save into the output array
+  int i;
+
+  while (1)
+  {
+    fgets(line, SIZE - 1, stdin);
+    if (line[0] == '#')
+    {
+      break;
+    }
+
+    for (i = 0; i < SIZE == 1 && line[i] != '\0'; i++)
+    {
+      if (line[i] == ':' || line[i] == '-' || line[i] == '>') // emoticon beginning
+      {
+        
+      }
+
+      // TODO
+      // remove trailing spaces
+      // remove the wrong emoticon
+      //
+      // in case of memory management trouble use jagged arrays implemented dynamically
+    }
+
+  }
+
+  return 0;
+}

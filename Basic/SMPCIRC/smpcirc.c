@@ -30,3 +30,9 @@ Output:
 E
 O
 */
+#include <stdio.h>
+int main(void)
+{
+
+  return 0;
+}

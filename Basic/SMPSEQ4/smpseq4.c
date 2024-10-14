@@ -39,10 +39,9 @@ Output:
 int main(void)
 {
   int n, m, i, j;
-  int * n_array;
-  int * m_array;
+  int *n_array, *m_array;
 
-  // allocate n memory size for n_array
+  // allocate memory for n_array
   scanf("%d", &n);
   n_array = (int *)malloc(n * sizeof(int));
 
@@ -59,7 +58,7 @@ int main(void)
     scanf("%d", &n_array[i]);
   }
 
-  // allocate m memory size for m_array
+  // allocate memory for m_array
   scanf("%d", &m);
   m_array = (int *)malloc(m * sizeof(int));
 
@@ -67,6 +66,7 @@ int main(void)
   if (m_array == NULL)
   {
     printf("Memory allocation failed!\n");
+    free(n_array); // free n_array before returning
     return 1;
   }
 
@@ -77,21 +77,23 @@ int main(void)
   }
 
   // compare the elements and print the common ones
-  for (i = 0; i < m; i++)
+  for (i = 0; i < n; i++) // iterate over n_array
   {
-    for (j = 0; j < n; j++)
+    for (j = 0; j < m; j++) // compare with m_array
     { 
       if (n_array[i] == m_array[j])
       {
         printf("%d ", n_array[i]);
-        break; // display the element if they match
+        break; // break once a match is found
       }
       if (n_array[i] < m_array[j])
       {
-        break; // go compare next n_array element 
+        break; // since arrays are sorted, no need to check further
       }
     }
   }
+
+  printf("\n"); // print a newline after the output
 
   // free the memory
   free(n_array);
@@ -99,3 +101,4 @@ int main(void)
 
   return 0;
 }
+

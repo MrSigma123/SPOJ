@@ -32,3 +32,70 @@ Input:
 Output:
 -2 -1 1 
 */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void)
+{
+  int n, m, i, j;
+  int * n_array;
+  int * m_array;
+
+  // allocate n memory size for n_array
+  scanf("%d", &n);
+  n_array = (int *)malloc(n * sizeof(int));
+
+  // check memory allocation
+  if (n_array == NULL)
+  {
+    printf("Memory allocation failed!\n");
+    return 1;
+  }
+
+  // input n_array elements
+  for (i = 0; i < n; i++)
+  {
+    scanf("%d", &n_array[i]);
+  }
+
+  // allocate m memory size for m_array
+  scanf("%d", &m);
+  m_array = (int *)malloc(m * sizeof(int));
+
+  // check memory allocation
+  if (m_array == NULL)
+  {
+    printf("Memory allocation failed!\n");
+    return 1;
+  }
+
+  // input m_array elements
+  for (i = 0; i < m; i++)
+  {
+    scanf("%d", &m_array[i]);
+  }
+
+  // compare the elements and print the common ones
+  for (i = 0; i < m; i++)
+  {
+    for (j = 0; j < n; j++)
+    { 
+      if (n_array[i] == m_array[j])
+      {
+        printf("%d ", n_array[i]);
+        break; // display the element if they match
+      }
+      if (n_array[i] < m_array[j])
+      {
+        break; // go compare next n_array element 
+      }
+    }
+  }
+
+  // free the memory
+  free(n_array);
+  free(m_array);
+
+  return 0;
+}

@@ -59,36 +59,78 @@ Note: In the third line of both the input and output, there is a space before th
 
 Special Thanks to Sakibul Mowla.
 */
+
 #include <stdio.h>
-#define SIZE 201
+#include <stdlib.h>
+#include <string.h>
+#define SIZE 201 // for storing long input line
 int main(void)
 {
-  char line[SIZE]; // store the line to process it and save into the output array
+  int size = 10; // starting value
+  int new_size;
   int i;
+  char ** strings_input;
+  char ** strings_output; // TODO: implement...
 
+  // allocate memory for an array of char pointers
+  // (each pointer will point to a string)
+  strings_input = (char **)malloc(size * sizeof(char *));
+  if (strings_input == NULL)
+  {
+    printf("Memory allocation failed!\n");
+    return 1;
+  }
+
+  // Loop to input strings and dynamically increase the size when needed
   while (1)
   {
-    fgets(line, SIZE - 1, stdin);
-    if (line[0] == '#')
+    if (i >= size)
     {
+      // Double the size when i exceeds the current allocated size
+      new_size = size * 2;
+      strings_input = (char **)realloc(strings_input, new_size * sizeof(char *));
+      if (strings_input == NULL)
+      {
+        printf("Memory reallocation failed!\n");
+        return 1;
+      }
+      size = new_size;
+    }
+
+    // Allocate memory for each string (assuming max 100 characters per string)
+    strings_input[i] = (char *)malloc(100 * sizeof(char));
+    if (strings_input[i] == NULL)
+    {
+      printf("Memory allocation failed for string %d!\n", i);
+      return 1;
+    }
+
+    printf("Enter string %d (or type 'exit' to stop): ", i + 1);
+    fgets(strings_input[i], 100, stdin);  // Read string from user
+    strings_input[i][strcspn(strings_input[i], "\n")] = '\0';  // Remove newline character
+
+    // Exit the loop if the user types "exit"
+    if (strcmp(strings_input[i], "exit") == 0)
+    {
+      free(strings_input[i]);  // Free memory for the "exit" string
       break;
     }
 
-    for (i = 0; i < SIZE == 1 && line[i] != '\0'; i++)
-    {
-      if (line[i] == ':' || line[i] == '-' || line[i] == '>') // emoticon beginning
-      {
-        
-      }
-
-      // TODO
-      // remove trailing spaces
-      // remove the wrong emoticon
-      //
-      // in case of memory management trouble use jagged arrays implemented dynamically
-    }
-
+    i++;
   }
+
+  // Print the stored strings
+  printf("\nYou entered the following strings:\n");
+  for (int j = 0; j < i; j++) {
+    printf("String %d: %s\n", j + 1, strings_input[j]);
+  }
+
+  // Free allocated memory
+  for (int j = 0; j < i; j++)
+  {
+    free(strings_input[j]);  // Free each individual string
+  }
+  free(strings_input);  // Free the array of pointers
 
   return 0;
 }

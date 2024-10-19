@@ -29,3 +29,59 @@ Output:
 7.3
 3
 */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int display_results(double * array, int size);
+
+int main(void)
+{
+  int i;
+  int test_cases;
+  double value1, value2;
+  double * results_array;
+  scanf("%d", &test_cases);
+
+  // allocate the memory
+  results_array = (double *)malloc(test_cases * sizeof(double));
+
+  // check the memory
+  if (results_array == NULL)
+  {
+    printf("Memory allocation failed!\n");
+    return 1;
+  }
+
+  // enter the results
+  for (i = 0; i < test_cases; i++)
+  {
+    scanf("%lf %lf", &value1, &value2);
+    results_array[i] = value1 + value2;
+  }
+
+  // display the results
+  display_results(results_array, test_cases);
+
+  // free the memory
+  free(results_array);
+
+  return 0;
+}
+
+int display_results(double * array, int size)
+{
+  if (array == NULL)
+  {
+    return 1;
+  }
+
+  int i;
+
+  for (i = 0; i < size; i++)
+  {
+    printf("%lf\n", array[i]);
+  }
+
+  return 0;
+}

@@ -52,3 +52,78 @@ Sample output:
 1998
 1
 */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+void reverse_number(int * value);
+int main(void)
+{
+  int test_cases, i;
+  int val1, val2;
+  int ** case_array;
+  scanf("%d", &test_cases);
+
+  // allocate the memory dynamically for test cases
+  case_array = (int **)malloc(test_cases * sizeof(int *));
+  
+  // check if allocation was successful
+  if (case_array == NULL)
+  {
+    printf("Memory allocation failed!\n");
+    return 1;
+  }
+  
+  // allocate the memory for each two specific numbers to be added
+  for (i = 0; i < test_cases; i++)
+  {
+    case_array[i] = (int *)malloc(2 * sizeof(int));
+    
+    // check allocation for each pair
+    if (case_array[i] == NULL)
+    {
+      printf("Memory allocation failed!\n");
+      return 1;
+    } 
+  }
+ 
+  // free the memory
+  for (i = 0; i < test_cases; i++)
+  {
+    free(case_array[i]);
+  }
+
+  free(case_array);
+
+  return 0;
+}
+
+void reverse_number(int * value)
+{
+  int value_copy = *value;
+  int reversed_number = 0;
+  
+  // return case for zero
+  if (value_copy == 0)
+  {
+    return;
+  }
+
+  // cut trailing zeros
+  while ((value_copy % 10) == 0)
+  {
+    value_copy /= 10;
+  }
+
+  while (value_copy != 0)
+  {
+    reversed_number += value_copy % 10;
+    value_copy /= 10;
+    if (value_copy != 0)
+    {
+      reversed_number *= 10;
+    }
+  }
+
+  *value = reversed_number;
+}

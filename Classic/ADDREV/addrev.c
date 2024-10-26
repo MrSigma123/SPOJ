@@ -60,8 +60,10 @@ void reverse_number(int * value);
 int main(void)
 {
   int test_cases, i;
-  int val1, val2;
+  int val1, val2, sum;
   int ** case_array;
+
+  // input the number of test cases
   scanf("%d", &test_cases);
 
   // allocate the memory dynamically for test cases
@@ -86,7 +88,23 @@ int main(void)
       return 1;
     } 
   }
- 
+
+  // input the values
+  for (i = 0; i < test_cases; i++)
+  {
+    scanf("%d%d", &case_array[i][0], &case_array[i][1]);
+  }
+
+  // display the values after reversing and reversing the result
+  for (i = 0; i < test_cases; i++)
+  {
+    reverse_number(&case_array[i][0]);
+    reverse_number(&case_array[i][1]);
+    sum = case_array[i][0] + case_array[i][1];
+    reverse_number(&sum);
+    printf("%d\n", sum);
+  }
+
   // free the memory
   for (i = 0; i < test_cases; i++)
   {

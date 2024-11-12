@@ -27,3 +27,14 @@ Output:
 14
 45
 */
+
+#include <stdio.h>
+int main(void)
+{
+  /*
+  The idea here is to obey the integer number limit. To do this we can store
+  the numbers as a strings, or more precisely an array of characters. This way
+  we can write the code in programming languages such as C programming language.
+  */
+  return 0;
+}

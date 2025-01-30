@@ -46,7 +46,51 @@ Output:
 #include <stdio.h>
 int main(void)
 {
+  // define variables
+  int i, j, k; // distinct iterators
+  int x = 0;  // result array starting index
+  int test_cases_n;
+  int test_cases_m;
+  int index_limit;
 
+  // scan the first string
+  scanf("%d", &test_cases_n);
+  int array_n[test_cases_n];
+  for (i = 0; i < test_cases_n; i++)
+  {
+    scanf("%d", &array_n[i]);
+  }
+  
+  // scan the second string
+  scanf("%d", &test_cases_m);
+  int array_m[test_cases_m];
+  for (j = 0; j < test_cases_m; j++)
+  {
+    scanf("%d", &array_m[j]);
+  }
+  
+  // set the limiter
+  if (test_cases_m > test_cases_n)
+  {
+    index_limit = test_cases_m;
+  }
+  else
+  {
+    index_limit = test_cases_n;
+  }
+
+  // define result string storaga
+  int result_string_storage[index_limit];
+
+  // check the inexes match
+  for (k = 0; k < index_limit; k++)
+  {
+    if (array_n[k] == array_m[k])
+    {
+      result_string_storage[x] = array_n[k];
+      x++;
+    }
+  }
   return 0;
 }
 

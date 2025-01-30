@@ -44,10 +44,11 @@ Output:
 */
 
 #include <stdio.h>
+#include <limits.h>
 int main(void)
 {
   // define variables
-  int i, j, k; // distinct iterators
+  int i;
   int x = 0;  // result array starting index
   int test_cases_n;
   int test_cases_m;
@@ -64,9 +65,9 @@ int main(void)
   // scan the second string
   scanf("%d", &test_cases_m);
   int array_m[test_cases_m];
-  for (j = 0; j < test_cases_m; j++)
+  for (i = 0; i < test_cases_m; i++)
   {
-    scanf("%d", &array_m[j]);
+    scanf("%d", &array_m[i]);
   }
   
   // set the limiter
@@ -83,14 +84,22 @@ int main(void)
   int result_string_storage[index_limit];
 
   // check the inexes match
-  for (k = 0; k < index_limit; k++)
+  for (i = 0; i < index_limit; i++)
   {
-    if (array_n[k] == array_m[k])
+    if (array_n[i] == array_m[i])
     {
-      result_string_storage[x] = array_n[k];
+      result_string_storage[x] = array_n[i];
       x++;
     }
   }
+
+  // sort the results (implement own sorting algorithm)
+  int minimum = INT_MAX;
+  for (i = 0; i < x; i++)
+  {
+
+  }
+
   return 0;
 }
 

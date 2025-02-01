@@ -83,16 +83,16 @@ int main(void)
   // define result string storaga
   int result_string_storage[index_limit];
 
-  // check the inexes match
+  // check the indexes match
   for (i = 0; i < index_limit; i++)
   {
     if (array_n[i] == array_m[i])
     {
-      result_string_storage[x] = array_n[i];
+      result_string_storage[x] = i + 1; // counting from 1
       x++;
     }
   }
-
+/*
   // sort the results (implement own sorting algorithm)
   int minimum = INT_MAX;
   int traced_element;
@@ -110,6 +110,12 @@ int main(void)
       result_string_storage[i] = minimum;
       result_string_storage[j] = traced_element;
     }
+  }
+*/
+  // print the results
+  for (i = 0; i < x; i++)
+  {
+    printf("%d ", result_string_storage[i]);
   }
 
   return 0;

@@ -48,7 +48,7 @@ Output:
 int main(void)
 {
   // define variables
-  int i;
+  int i, j;
   int x = 0;  // result array starting index
   int test_cases_n;
   int test_cases_m;
@@ -95,9 +95,21 @@ int main(void)
 
   // sort the results (implement own sorting algorithm)
   int minimum = INT_MAX;
+  int traced_element;
   for (i = 0; i < x; i++)
   {
-
+    minimum = INT_MAX;
+    for (j = 0; j < x; j++)
+    {
+      if(result_string_storage[j] < minimum)
+      {
+        minimum = result_string_storage[j];
+      }
+      // swap the minimum and traced element
+      traced_element = result_string_storage[i];
+      result_string_storage[i] = minimum;
+      result_string_storage[j] = traced_element;
+    }
   }
 
   return 0;

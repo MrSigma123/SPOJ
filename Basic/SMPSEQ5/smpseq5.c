@@ -92,26 +92,7 @@ int main(void)
       x++;
     }
   }
-/*
-  // sort the results (implement own sorting algorithm)
-  int minimum = INT_MAX;
-  int traced_element;
-  for (i = 0; i < x; i++)
-  {
-    minimum = INT_MAX;
-    for (j = 0; j < x; j++)
-    {
-      if(result_string_storage[j] < minimum)
-      {
-        minimum = result_string_storage[j];
-      }
-      // swap the minimum and traced element
-      traced_element = result_string_storage[i];
-      result_string_storage[i] = minimum;
-      result_string_storage[j] = traced_element;
-    }
-  }
-*/
+
   // print the results
   for (i = 0; i < x; i++)
   {

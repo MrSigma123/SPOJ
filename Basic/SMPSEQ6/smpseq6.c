@@ -45,3 +45,22 @@ Input:
 Output:
 3 5
 */
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(void)
+{
+  int string_size, param_x;
+
+  // set the string sizes
+  scanf("%d", &string_size);
+  
+  int * string_s = malloc(sizeof(int) * string_size);
+  int * string_q = malloc(sizeof(int) * string_size);
+
+  free(string_s);
+  free(string_q);
+
+  return 0;
+}

@@ -49,18 +49,39 @@ Output:
 #include <stdio.h>
 #include <stdlib.h>
 
+void scan_array(int * array, int size);
+
 int main(void)
 {
   int string_size, param_x;
 
-  // set the string sizes
+  // set the string sizes and x parameter values
   scanf("%d", &string_size);
-  
+  scanf("%d", &param_x);
+
+  // create two arrays for s and q strings
   int * string_s = malloc(sizeof(int) * string_size);
   int * string_q = malloc(sizeof(int) * string_size);
+
+  // scan the arrays
+  //
+
+  
 
   free(string_s);
   free(string_q);
 
   return 0;
+}
+
+void scan_array(int * array, int size)
+{
+  int i;
+
+  for (i = 0; i < size; i++)
+  {
+    scanf("%d", array+i);  
+  }
+
+  return;
 }

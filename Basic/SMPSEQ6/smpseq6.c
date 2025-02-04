@@ -53,7 +53,9 @@ void scan_array(int * array, int size);
 
 int main(void)
 {
+  int i, j;
   int string_size, param_x;
+  int found_a_negative_y_match;
 
   // set the string sizes and x parameter values
   scanf("%d", &string_size);
@@ -62,14 +64,51 @@ int main(void)
   // create two arrays for s and q strings
   int * string_s = malloc(sizeof(int) * string_size);
   int * string_q = malloc(sizeof(int) * string_size);
+  int * results_string = malloc(sizeof(int) * string_size);
 
   // scan the arrays
-  //
+  scan_array(string_s, string_size);
+  scan_array(string_s, string_size);
 
-  
+  // find the indexes which match the condition
+  for (i = 0; i < string_size; i++)
+  {
+    // define quasi absolute value condition => -x >= y >= x
+    found_a_negative_y_match = 0;
+
+    // for negative j
+    if (i > 0)
+    {
+      for (j = -i; j < 0; j++)
+      {
+        if (string_s[i] == string_q[i] + j)
+        {
+          results_string[i] = i + 1;
+          found_a_negative_y_match = 1;
+          break;
+        }
+      }
+    }
+
+    if (found_a_negative_y_match == 1)
+    {
+      continue;
+    }
+    
+    // for non negative j
+    for (j = 0; j <= param_x; j++)
+    {
+      if (string_s[i] == string_q[i] + j)
+      {
+        results_string[i] = i + 1;
+        break;
+      }
+    }
+  }
 
   free(string_s);
   free(string_q);
+  free(results_string);
 
   return 0;
 }

@@ -56,7 +56,7 @@ int main(void)
   int i, j;
   int string_size, param_x;
   int found_a_negative_y_match;
-
+  int counter;
   // set the string sizes and x parameter values
   scanf("%d", &string_size);
   scanf("%d", &param_x);
@@ -104,6 +104,12 @@ int main(void)
         break;
       }
     }
+  }
+
+  // display the results
+  for (i = 0; i < counter; i++)
+  {
+    printf("%d, ", results_string[i]);
   }
 
   free(string_s);

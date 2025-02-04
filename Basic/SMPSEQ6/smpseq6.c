@@ -55,53 +55,46 @@ int main(void)
 {
   int i, j;
   int string_size, param_x;
-  int found_a_negative_y_match;
-  int counter;
+  int counter = 0;
   // set the string sizes and x parameter values
   scanf("%d", &string_size);
   scanf("%d", &param_x);
 
   // create two arrays for s and q strings
-  int * string_s = malloc(sizeof(int) * string_size);
-  int * string_q = malloc(sizeof(int) * string_size);
-  int * results_string = malloc(sizeof(int) * string_size);
+  int * string_s = (int*)malloc(sizeof(int) * string_size);
+  int * string_q = (int*)malloc(sizeof(int) * string_size);
+  int * results_string = (int*)malloc(sizeof(int) * string_size);
 
   // scan the arrays
   scan_array(string_s, string_size);
-  scan_array(string_s, string_size);
+  scan_array(string_q, string_size);
 
   // find the indexes which match the condition
-  for (i = 0; i < string_size; i++)
+  for (i = 0; i < string_size && ((i + param_x) <= string_size - 1); i++)
   {
     // define quasi absolute value condition => -x >= y >= x
-    found_a_negative_y_match = 0;
-
-    // for negative j
-    if (i > 0)
+    if (i <= param_x)
     {
-      for (j = -i; j < 0; j++)
+      for (j = -i; j <= param_x; j++)
       {
         if (string_s[i] == string_q[i] + j)
         {
-          results_string[i] = i + 1;
-          found_a_negative_y_match = 1;
+          results_string[counter] = i + 1;
+          counter++;
           break;
         }
       }
     }
-
-    if (found_a_negative_y_match == 1)
+    else
     {
-      continue;
-    }
-    
-    // for non negative j
-    for (j = 0; j <= param_x; j++)
-    {
-      if (string_s[i] == string_q[i] + j)
+      for (j = -param_x; j <= param_x && ((i + param_x) <= string_size - 1); j++)
       {
-        results_string[i] = i + 1;
-        break;
+        if (string_s[i] == string_q[i] + j)
+        {
+          results_string[counter] = i + 1;
+          counter++;
+          break;
+        }
       }
     }
   }
@@ -109,7 +102,7 @@ int main(void)
   // display the results
   for (i = 0; i < counter; i++)
   {
-    printf("%d, ", results_string[i]);
+    printf("%d ", results_string[i]);
   }
 
   free(string_s);

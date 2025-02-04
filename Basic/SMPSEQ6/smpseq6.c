@@ -57,44 +57,38 @@ int main(void)
   int string_size, param_x;
   int counter = 0;
   // set the string sizes and x parameter values
-  scanf("%d", &string_size);
-  scanf("%d", &param_x);
+  scanf("%d %d", &string_size, &param_x);
 
   // create two arrays for s and q strings
   int * string_s = (int*)malloc(sizeof(int) * string_size);
   int * string_q = (int*)malloc(sizeof(int) * string_size);
   int * results_string = (int*)malloc(sizeof(int) * string_size);
 
+  // check allocation
+  if (!string_s || !string_q || !results_string)
+  {
+    fprintf(stderr, "Memory allocation failed\n");
+    free(string_s);
+    free(string_q);
+    free(results_string);
+    return 1;
+  }
+
   // scan the arrays
   scan_array(string_s, string_size);
   scan_array(string_q, string_size);
 
   // find the indexes which match the condition
-  for (i = 0; i < string_size && ((i + param_x) <= string_size - 1); i++)
+  for (i = 0; i < string_size; i++)
   {
     // define quasi absolute value condition => -x >= y >= x
-    if (i <= param_x)
+    for (j = -param_x; j <= param_x; j++)
     {
-      for (j = -i; j <= param_x; j++)
+      if (string_s[i] == string_q[i] + j)
       {
-        if (string_s[i] == string_q[i] + j)
-        {
-          results_string[counter] = i + 1;
-          counter++;
-          break;
-        }
-      }
-    }
-    else
-    {
-      for (j = -param_x; j <= param_x && ((i + param_x) <= string_size - 1); j++)
-      {
-        if (string_s[i] == string_q[i] + j)
-        {
-          results_string[counter] = i + 1;
-          counter++;
-          break;
-        }
+        results_string[counter] = i + 1;
+        counter++;
+        break;
       }
     }
   }
@@ -102,8 +96,10 @@ int main(void)
   // display the results
   for (i = 0; i < counter; i++)
   {
-    printf("%d ", results_string[i]);
+    if (i > 0) printf(" ");  // Print space only between numbers
+    printf("%d", results_string[i]);
   }
+  printf("\n");
 
   free(string_s);
   free(string_q);
